@@ -243,10 +243,9 @@ def _per_rank_plans():
 
 
 def test_group_owner_layout_from_group_composes_the_steps():
-    """`from_group` bundles the group, its mesh, the layouts, and the balanced owners."""
+    """`from_group` bundles the mesh, the layouts, and the balanced owners."""
     group = _round_trip_group()
     plan = GroupOwnerLayout.from_group(group, cost_fn=ns_cost_fn(5))
-    assert plan.group is group
     assert plan.mesh is group.mesh
     # Composition equivalence: the bundle is exactly the two steps composed.
     assert plan.layouts == ParameterLayout.from_group(group)
